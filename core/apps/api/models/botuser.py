@@ -12,6 +12,7 @@ class BotuserModel(AbstractBaseModel):
     user_id = models.BigIntegerField(
         verbose_name=_("Tg id"),
         default=0,
+        unique=True,
         blank=True, null=True
     )
     lang = models.CharField(
