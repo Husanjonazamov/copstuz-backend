@@ -47,7 +47,22 @@ class BotuserModel(AbstractBaseModel):
         verbose_name=_("Manzil"),
         blank=True, null=True
     )
-    
+    branch = models.ForeignKey(
+        "api.BranchModel",
+        on_delete=models.CASCADE,
+        verbose_name=_("Filial"),
+        blank=True, null=True
+    )
+    passport_front = models.ImageField(
+        upload_to="passport/front",
+        verbose_name=_("Old Rasm"),
+        blank=True, null=True
+    )
+    passport_back = models.ImageField(
+        upload_to="passport/back",
+        verbose_name=_("Orqa tarafi"),
+        blank=True, null=True
+    )
     
 
     def __str__(self):
