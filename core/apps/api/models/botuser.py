@@ -3,12 +3,55 @@ from django.utils.translation import gettext_lazy as _
 from django_core.models import AbstractBaseModel
 
 
-class BotuserModel(AbstractBaseModel):
+class LangChoice(models.TextChoices):
+    UZ = "uz", _("Uzbek")
+    RU = "ru", _("Russian")
 
-    name = models.CharField(verbose_name=_("name"), max_length=255)
+
+class BotuserModel(AbstractBaseModel):
+    user_id = models.BigIntegerField(
+        verbose_name=_("Tg id"),
+        default=0,
+        blank=True, null=True
+    )
+    lang = models.CharField(
+        verbose_name=_("Til"),
+        max_length=100,
+        choices=LangChoice.choices,
+        default=LangChoice.UZ,
+    )
+    name = models.CharField(
+        verbose_name=_("Ism"),
+        max_length=255,
+        blank=True, null=True
+    )
+    phone = models.BigIntegerField(
+        verbose_name=_("Telefon raqam"),
+        blank=True, null=True
+    )
+    passpord_id = models.CharField(
+        verbose_name=_("Passport Id"),
+        max_length=50,
+        blank=True, null=True
+    )
+    passport_jsh = models.CharField(
+        verbose_name=_("Passport Jshshr"),
+        max_length=50,
+        blank=True, null=True
+    )
+    birth_date = models.DateField(
+        verbose_name=_("Tug'ilgan sana"),
+        null=True, blank=True
+    )
+    address = models.TextField(
+        verbose_name=_("Manzil"),
+        blank=True, null=True
+    )
+    
+    
 
     def __str__(self):
-        return self.pk
+        return self.name
 
     @classmethod
     def _create_fake(self):
