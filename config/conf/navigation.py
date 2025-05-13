@@ -16,15 +16,26 @@ PAGES = [
         "title": _("Auth"),
         "separator": True,  # Top border
         "items": [
-            {
-                "title": _("Users"),
-                "icon": "group",
-                "link": reverse_lazy("admin:http_user_changelist"),
-            },
+            # {
+            #     "title": _("Users"),
+            #     "icon": "group",
+            #     "link": reverse_lazy("admin:http_user_changelist"),
+            # },
             {
                 "title": _("Group"),
                 "icon": "group",
                 "link": reverse_lazy("admin:auth_group_changelist"),
+            },
+        ],
+    },
+    {
+        "title": _("Kategoryalar"),
+        "separator": True,  # Top border
+        "items": [
+            {
+                "title": _("Kategorya"),
+                "icon": "category",
+                "link": reverse_lazy("admin:api_categorymodel_changelist"),
             },
         ],
     },
