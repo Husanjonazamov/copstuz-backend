@@ -66,7 +66,7 @@ class BotuserModel(AbstractBaseModel):
     
 
     def __str__(self):
-        return self.name
+        return self.name if self.name else "No name"
 
     @classmethod
     def _create_fake(self):
