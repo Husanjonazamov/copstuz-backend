@@ -5,4 +5,6 @@ from core.apps.api.models import BranchModel
 
 @register(BranchModel)
 class BranchTranslation(TranslationOptions):
-    fields = []
+    fields = [
+        'name'
+    ]
