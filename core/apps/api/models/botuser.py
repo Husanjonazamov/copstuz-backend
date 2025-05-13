@@ -29,7 +29,7 @@ class BotuserModel(AbstractBaseModel):
         verbose_name=_("Telefon raqam"),
         blank=True, null=True
     )
-    passpord_id = models.CharField(
+    passport_id = models.CharField(
         verbose_name=_("Passport Id"),
         max_length=50,
         blank=True, null=True

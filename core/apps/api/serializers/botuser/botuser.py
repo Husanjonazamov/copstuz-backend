@@ -8,7 +8,17 @@ class BaseBotuserSerializer(serializers.ModelSerializer):
         model = BotuserModel
         fields = [
             "id",
+            "lang",
+            "user_id",
             "name",
+            "phone",
+            "passport_id",
+            "passport_jsh",
+            "birth_date",
+            "address",
+            "branch",
+            "passport_front",
+            "passport_back",
         ]
 
 
@@ -24,5 +34,19 @@ class CreateBotuserSerializer(BaseBotuserSerializer):
     class Meta(BaseBotuserSerializer.Meta):
         fields = [
             "id",
+            "lang",
+            "user_id",
             "name",
+            "phone",
+            "passport_id",
+            "passport_jsh",
+            "birth_date",
+            "address",
+            "branch",
+            "passport_front",
+            "passport_back",
         ]
+
+    def create(self, validate_data):
+        bot_user = BotuserModel.objects.create(**validate_data)
+        return bot_user
