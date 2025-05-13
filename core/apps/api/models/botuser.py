@@ -54,14 +54,14 @@ class BotuserModel(AbstractBaseModel):
         verbose_name=_("Filial"),
         blank=True, null=True
     )
-    passport_front = models.ImageField(
-        upload_to="passport/front",
+    passport_front = models.CharField(
         verbose_name=_("Old Rasm"),
+        max_length=200,
         blank=True, null=True
     )
-    passport_back = models.ImageField(
-        upload_to="passport/back",
-        verbose_name=_("Orqa tarafi"),
+    passport_back = models.CharField(
+        verbose_name=_("Orqa rasm"),
+        max_length=200,
         blank=True, null=True
     )
     
