@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from core.apps.api.models import BotuserModel
+from core.apps.api.models import BotuserModel, BranchModel
 
 
 class BaseBotuserSerializer(serializers.ModelSerializer):
@@ -30,8 +30,12 @@ class RetrieveBotuserSerializer(BaseBotuserSerializer):
     class Meta(BaseBotuserSerializer.Meta): ...
 
 
-class CreateBotuserSerializer(BaseBotuserSerializer):
-    class Meta(BaseBotuserSerializer.Meta):
+
+class CreateBotuserSerializer(serializers.ModelSerializer):
+    branch = serializers.CharField()
+
+    class Meta:
+        model = BotuserModel
         fields = [
             "id",
             "lang",
@@ -47,6 +51,10 @@ class CreateBotuserSerializer(BaseBotuserSerializer):
             "passport_back",
         ]
 
-    def create(self, validate_data):
-        bot_user = BotuserModel.objects.create(**validate_data)
+    def create(self, validated_data):
+        branch_name = validated_data.pop("branch")
+
+        branch, _ = BranchModel.objects.get_or_create(name=branch_name)
+
+        bot_user = BotuserModel.objects.create(branch=branch, **validated_data)
         return bot_user
