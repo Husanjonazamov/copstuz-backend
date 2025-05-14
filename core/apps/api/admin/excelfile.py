@@ -8,5 +8,6 @@ from core.apps.api.models import ExcelfileModel
 class ExcelfileAdmin(ModelAdmin):
     list_display = (
         "id",
-        "__str__",
+        "file",
+        "is_acivate",
     )

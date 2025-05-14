@@ -8,7 +8,8 @@ class BaseExcelfileSerializer(serializers.ModelSerializer):
         model = ExcelfileModel
         fields = [
             "id",
-            "name",
+            "file",
+            "is_acivate"
         ]
 
 
@@ -24,5 +25,6 @@ class CreateExcelfileSerializer(BaseExcelfileSerializer):
     class Meta(BaseExcelfileSerializer.Meta):
         fields = [
             "id",
-            "name",
+            "file",
+            "is_acivate"
         ]

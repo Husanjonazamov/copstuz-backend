@@ -37,6 +37,11 @@ PAGES = [
                 "icon": "apartment",
                 "link": reverse_lazy("admin:api_branchmodel_changelist"),
             },
+            {
+                "title": _("Excel fayl"),
+                "icon": "apartment",
+                "link": reverse_lazy("admin:api_excelfilemodel_changelist"),
+            },
         ],
     },
 ]
