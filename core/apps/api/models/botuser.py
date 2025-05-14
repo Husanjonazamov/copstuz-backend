@@ -40,8 +40,9 @@ class BotuserModel(AbstractBaseModel):
         max_length=50,
         blank=True, null=True
     )
-    birth_date = models.DateField(
+    birth_date = models.CharField(
         verbose_name=_("Tug'ilgan sana"),
+        max_length=100,
         null=True, blank=True
     )
     address = models.TextField(
@@ -64,7 +65,6 @@ class BotuserModel(AbstractBaseModel):
         max_length=200,
         blank=True, null=True
     )
-    
 
     def __str__(self):
         return self.name if self.name else "No name"

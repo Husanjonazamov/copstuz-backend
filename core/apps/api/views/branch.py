@@ -22,7 +22,7 @@ class BranchView(BaseViewSetMixin, ModelViewSet):
     action_serializer_class = {
         "list": ListBranchSerializer,
         "retrieve": RetrieveBranchSerializer,
-        "create": CreateBranchSerializer,
+        "create": CreateBranchSerializer,   
     }
 
     @action(detail=False, methods=['get'], url_path="(?P<branch_name>[^/.]+)")
