@@ -15,7 +15,10 @@ from rest_framework.response import Response
 from rest_framework import status
 import pandas as pd
 from django.core.files.storage import FileSystemStorage
-
+from rest_framework.views import APIView
+from rest_framework.parsers import MultiPartParser
+import pandas as pd
+from rest_framework import status
 
 
 @extend_schema(tags=["ExcelFile"])
@@ -58,3 +61,19 @@ class ExcelfileView(BaseViewSetMixin, ModelViewSet):
             return Response({"detail": "Sizning buyurtmangiz keldi!"}, status=status.HTTP_200_OK)
         else:
             return Response({"detail": "Buyurtma mavjud emas."}, status=status.HTTP_404_NOT_FOUND)
+        
+        
+        
+
+
+class ExcelUploadView(APIView):
+    parser_classes = [MultiPartParser]
+    permission_classes = [AllowAny]
+    
+    def post(self, request, *args, **kwargs):
+        uploaded_file = request.FILES.get('file')
+        if not uploaded_file:
+            return Response({"error": "Fayl yuborilmadi"}, status=400)
+
+        excel_file = ExcelfileModel.objects.create(file=uploaded_file)
+        return Response({"message": "Fayl saqlandi", "file_url": excel_file.file.url})

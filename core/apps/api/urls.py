@@ -4,7 +4,8 @@ from core.apps.api.views import (
     BotuserView, 
     BranchView,
     CategoryView, 
-    ExcelfileView
+    ExcelfileView,
+    ExcelUploadView
 )
 
 router = DefaultRouter()
@@ -15,4 +16,5 @@ router.register(r"excel-file", ExcelfileView, basename="excel-file")
 
 urlpatterns = [
     path("", include(router.urls)),
+    path("excel/create/", ExcelUploadView.as_view(), name="create")
 ]
