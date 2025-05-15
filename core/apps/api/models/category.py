@@ -8,7 +8,10 @@ class CategoryModel(AbstractBaseModel):
         verbose_name=_("name"),
         max_length=255
     )
-
+    is_active = models.BooleanField(
+        verbose_name=_("Faolmi ?"),
+        default=True
+    )
     def __str__(self):
         return self.name
 

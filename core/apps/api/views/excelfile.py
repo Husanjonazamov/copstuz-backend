@@ -77,3 +77,4 @@ class ExcelUploadView(APIView):
 
         excel_file = ExcelfileModel.objects.create(file=uploaded_file)
         return Response({"message": "Fayl saqlandi", "file_url": excel_file.file.url})
+
