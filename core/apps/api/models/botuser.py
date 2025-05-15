@@ -7,7 +7,6 @@ class LangChoice(models.TextChoices):
     UZ = "uz", _("Uzbek")
     RU = "ru", _("Russian")
 
-
 class BotuserModel(AbstractBaseModel):
     user_id = models.BigIntegerField(
         verbose_name=_("Tg id"),
@@ -65,6 +64,12 @@ class BotuserModel(AbstractBaseModel):
         max_length=200,
         blank=True, null=True
     )
+    cargo_code = models.CharField(
+        verbose_name=_("Yuk kodi"),
+        max_length=255,
+        default=0,
+        blank=True, null=True
+    )  
 
     def __str__(self):
         return self.name if self.name else "No name"

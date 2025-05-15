@@ -19,6 +19,7 @@ class BaseBotuserSerializer(serializers.ModelSerializer):
             "branch",
             "passport_front",
             "passport_back",
+            "cargo_code"
         ]
 
 
@@ -32,8 +33,6 @@ class RetrieveBotuserSerializer(BaseBotuserSerializer):
 
 
 class CreateBotuserSerializer(serializers.ModelSerializer):
-    branch = serializers.CharField()
-
     class Meta:
         model = BotuserModel
         fields = [
@@ -49,12 +48,9 @@ class CreateBotuserSerializer(serializers.ModelSerializer):
             "branch",
             "passport_front",
             "passport_back",
+            "cargo_code"
         ]
 
     def create(self, validated_data):
-        branch_name = validated_data.pop("branch")
-
-        branch, _ = BranchModel.objects.get_or_create(name=branch_name)
-
-        bot_user = BotuserModel.objects.create(branch=branch, **validated_data)
+        bot_user = BotuserModel.objects.create(**validated_data)
         return bot_user

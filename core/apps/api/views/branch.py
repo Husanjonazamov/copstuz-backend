@@ -35,3 +35,12 @@ class BranchView(BaseViewSetMixin, ModelViewSet):
         except BranchModel.DoesNotExist:
             return Response({"error": "Branch not found"}, status=status.HTTP_404_NOT_FOUND) 
     
+    
+    
+    @action(detail=False, methods=['get'], url_path="branch-id/(?P<branch_id>[^/.]+)")
+    def get_name_by_id(self, request, branch_id=None):
+        try:
+            branch = BranchModel.objects.get(id=branch_id)
+            return Response({"branch_name": branch.name}, status=status.HTTP_200_OK)
+        except BranchModel.DoesNotExist:
+            return Response({"error": "Branch not found"}, status=status.HTTP_404_NOT_FOUND)

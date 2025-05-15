@@ -55,15 +55,18 @@ class ExcelfileView(BaseViewSetMixin, ModelViewSet):
         except Exception as e:
             return Response({"detail": f"Faylni o'qishda xatolik: {str(e)}"}, status=status.HTTP_400_BAD_REQUEST)
 
+        df["id"] = df["id"].astype(str)
+        excel_id = str(excel_id)
+
         matching_rows = df[df['id'] == excel_id]
 
         if not matching_rows.empty:
-            return Response({"detail": "Sizning buyurtmangiz keldi!"}, status=status.HTTP_200_OK)
+            return Response({"detail": "✅ Sizning buyurtmangiz keldi!"}, status=status.HTTP_200_OK)
         else:
-            return Response({"detail": "Buyurtma mavjud emas."}, status=status.HTTP_404_NOT_FOUND)
-        
-        
-        
+            return Response({"detail": "❌ Buyurtma mavjud emas."}, status=status.HTTP_404_NOT_FOUND)
+
+            
+            
 
 
 class ExcelUploadView(APIView):
