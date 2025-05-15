@@ -9,6 +9,7 @@ class BaseCategorySerializer(serializers.ModelSerializer):
         fields = [
             "id",
             "name",
+            "is_active"
         ]
 
 
@@ -25,4 +26,5 @@ class CreateCategorySerializer(BaseCategorySerializer):
         fields = [
             "id",
             "name",
+            "is_active"
         ]
