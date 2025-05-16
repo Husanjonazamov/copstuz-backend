@@ -28,9 +28,9 @@ PAGES = [
         "separator": True,  # Top border
         "items": [
             {
-                "title": _("Kategorya"),
-                "icon": "category",
-                "link": reverse_lazy("admin:api_categorymodel_changelist"),
+                "title": _("Sklad Manzili"),
+                "icon": "location_on",
+                "link": reverse_lazy("admin:api_cargolocationmodel_changelist"),
             },
             {
                 "title": _("Filiallar"),

@@ -8,7 +8,9 @@ class BaseCargolocationSerializer(serializers.ModelSerializer):
         model = CargolocationModel
         fields = [
             "id",
-            "name",
+            "cargo_type",
+            "is_active",
+            "map_link"
         ]
 
 
@@ -24,5 +26,7 @@ class CreateCargolocationSerializer(BaseCargolocationSerializer):
     class Meta(BaseCargolocationSerializer.Meta):
         fields = [
             "id",
-            "name",
+            "cargo_type",
+            "is_active",
+            "map_link"
         ]
