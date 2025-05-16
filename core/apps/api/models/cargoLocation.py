@@ -17,7 +17,7 @@ class CargolocationModel(AbstractBaseModel):
     )
     map_link = models.URLField(verbose_name=_("Googla maps"), null=True, blank=True) 
     post_code = models.CharField(
-        verbose_name=_("Post kod"),
+        verbose_name=_("Post id"),
         max_length=20,
         blank=True, null=True
     )
