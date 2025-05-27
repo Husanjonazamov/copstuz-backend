@@ -17,6 +17,7 @@ class BranchView(BaseViewSetMixin, ModelViewSet):
     queryset = BranchModel.objects.all()
     serializer_class = ListBranchSerializer
     permission_classes = [AllowAny]
+    pagination_class = None  
 
     action_permission_classes = {}
     action_serializer_class = {
