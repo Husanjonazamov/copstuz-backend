@@ -51,7 +51,7 @@ class BotuserModel(AbstractBaseModel):
     branch = models.ForeignKey(
         "api.BranchModel",
         on_delete=models.CASCADE,
-        verbose_name=_("Filial"),
+        verbose_name=_("Shahar"),
         blank=True, null=True
     )
     passport_front = models.CharField(

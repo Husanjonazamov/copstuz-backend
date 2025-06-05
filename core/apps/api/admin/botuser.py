@@ -9,7 +9,7 @@ class BotuserAdmin(ModelAdmin):
     list_display = (
         "id",
         'name',
-        'user_id',
+        'branch',
         'phone',
         'lang'
     )
