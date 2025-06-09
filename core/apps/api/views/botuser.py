@@ -34,6 +34,8 @@ class BotuserView(BaseViewSetMixin, ModelViewSet):
     
     @action(detail=False, methods=["patch"], url_path="update/(?P<user_id>[^/.]+)")
     def partial_update_user(self, request, user_id):
+        permission_classes = [AllowAny]
+        
         try:
             user = BotuserModel.objects.get(user_id=user_id)
             serializer = self.get_serializer(user, data=request.data, partial=True)
