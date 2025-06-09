@@ -8,6 +8,7 @@ from core.apps.api.models import BotuserModel
 class BotuserAdmin(ModelAdmin):
     list_display = (
         "id",
+        "user_id",
         'name',
         'branch',
         'phone',
