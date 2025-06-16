@@ -55,10 +55,10 @@ class ExcelfileView(BaseViewSetMixin, ModelViewSet):
         except Exception as e:
             return Response({"detail": f"Faylni o'qishda xatolik: {str(e)}"}, status=status.HTTP_400_BAD_REQUEST)
 
-        df["id"] = df["id"].astype(str)
+        df["TREK NUMBER"] = df["TREK NUMBER"].astype(str)
         excel_id = str(excel_id)
 
-        matching_rows = df[df['id'] == excel_id]
+        matching_rows = df[df['TREK NUMBER'] == excel_id]
 
         if not matching_rows.empty:
             return Response({"detail": "✅ Sizning buyurtmangiz keldi!"}, status=status.HTTP_200_OK)
