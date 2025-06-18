@@ -48,7 +48,7 @@ class ExcelfileView(BaseViewSetMixin, ModelViewSet):
             return Response({"detail": "Excel fayli topilmadi."}, status=status.HTTP_404_NOT_FOUND)
 
         fs = FileSystemStorage()
-        filepath = fs.path(active_excel.file.name)  
+        filepath = fs.path(active_excel.file.name)
 
         try:
             df = pd.read_excel(filepath)
@@ -58,14 +58,26 @@ class ExcelfileView(BaseViewSetMixin, ModelViewSet):
         df["TREK NUMBER"] = df["TREK NUMBER"].astype(str)
         excel_id = str(excel_id)
 
-        matching_rows = df[df['TREK NUMBER'] == excel_id]
+        matching_row = df[df["TREK NUMBER"] == excel_id]
 
-        if not matching_rows.empty:
-            return Response({"detail": "✅ Sizning buyurtmangiz keldi!"}, status=status.HTTP_200_OK)
-        else:
+        if matching_row.empty:
             return Response({"detail": "❌ Buyurtma mavjud emas."}, status=status.HTTP_404_NOT_FOUND)
 
+        row = matching_row.iloc[0]
+
+        result = {
+            "KG": row["KG"],
+            "Q-TY": row["Q-TY"],
+            "DATE": row["DATE"],
+            "TREK_NUMBER": row["TREK NUMBER"],
             
+        }
+
+        return Response({
+            "detail": "✅ Buyurtma topildi!",
+            "data": result
+        }, status=status.HTTP_200_OK)
+
             
 
 
